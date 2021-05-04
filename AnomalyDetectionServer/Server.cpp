@@ -47,33 +47,35 @@ Server::Server(int port)throw (const char*) { // @suppress("Class members should
 }
 
 void sigHandler(int sigNum){
-	//cout<<"sidH"<<endl;
+	cout<<"sidH"<<endl;
 }
 
-void Server::start(ClientHandler& ch)throw(const char*){	
-	  t=new thread([&ch,this](){
-		    signal(SIGALRM,sigHandler);
-		    while(!stopped){
-				socklen_t clientSize=sizeof(client);
-				alarm(1);
-				cout << "waiting for a client" << endl;
-				int aClient = accept(fd,(struct sockaddr*)&client,&clientSize);
-				cout << "client connected" << endl;
-				if(aClient>0){
-					//new thread([&aClient,this,&ch](){
-						ch.handle(aClient);
-						close(aClient);
-					//});
-				}
-				alarm(0);
-		    }
-		    close(fd);
-	  });
+void Server::start(ClientHandler& ch)throw(const char*){
+	cout << "server started" << endl;	
+	t=new thread([&ch,this](){
+		signal(SIGALRM,sigHandler);
+		while(!stopped){
+			socklen_t clientSize=sizeof(client);
+			alarm(1);
+			cout << "waiting for a client" << endl;
+			int aClient = accept(fd,(struct sockaddr*)&client,&clientSize);
+			cout << "client connected" << endl;
+			if(aClient>0){
+				//new thread([&aClient,this,&ch](){
+					ch.handle(aClient);
+					close(aClient);
+				//});
+			}
+			alarm(0);
+		}
+		close(fd);
+	});
 }
 
 void Server::stop(){
 	stopped=true;
 	t->join(); // do not delete this!
+	cout << "thread joined" << endl;
 }
 
 Server::~Server() {

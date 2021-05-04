@@ -23,7 +23,6 @@ void CLI::start(){
 			dio->write(commands[i]->description+"\n");
 		}
 		string input = dio->read();
-		cout << input << endl;
 		index=input[0]-'0'-1;
 		if(index>=0 && index<=6)
 			commands[index]->execute(&sharedState);

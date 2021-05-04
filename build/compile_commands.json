@@ -1,0 +1,42 @@
+[
+{
+  "directory": "/home/linux/Desktop/Advanced-Programming-2-Anomaly-Inspection-Web-App/build",
+  "command": "/usr/bin/c++     -pthread -std=c++11 -g   -o CMakeFiles/AnomalyDetectionServer.dir/MainTrain.cpp.o -c /home/linux/Desktop/Advanced-Programming-2-Anomaly-Inspection-Web-App/AnomalyDetectionServer/MainTrain.cpp",
+  "file": "/home/linux/Desktop/Advanced-Programming-2-Anomaly-Inspection-Web-App/AnomalyDetectionServer/MainTrain.cpp"
+},
+{
+  "directory": "/home/linux/Desktop/Advanced-Programming-2-Anomaly-Inspection-Web-App/build",
+  "command": "/usr/bin/c++     -pthread -std=c++11 -g   -o CMakeFiles/AnomalyDetectionServer.dir/anomaly_detection_util.cpp.o -c /home/linux/Desktop/Advanced-Programming-2-Anomaly-Inspection-Web-App/AnomalyDetectionServer/anomaly_detection_util.cpp",
+  "file": "/home/linux/Desktop/Advanced-Programming-2-Anomaly-Inspection-Web-App/AnomalyDetectionServer/anomaly_detection_util.cpp"
+},
+{
+  "directory": "/home/linux/Desktop/Advanced-Programming-2-Anomaly-Inspection-Web-App/build",
+  "command": "/usr/bin/c++     -pthread -std=c++11 -g   -o CMakeFiles/AnomalyDetectionServer.dir/CLI.cpp.o -c /home/linux/Desktop/Advanced-Programming-2-Anomaly-Inspection-Web-App/AnomalyDetectionServer/CLI.cpp",
+  "file": "/home/linux/Desktop/Advanced-Programming-2-Anomaly-Inspection-Web-App/AnomalyDetectionServer/CLI.cpp"
+},
+{
+  "directory": "/home/linux/Desktop/Advanced-Programming-2-Anomaly-Inspection-Web-App/build",
+  "command": "/usr/bin/c++     -pthread -std=c++11 -g   -o CMakeFiles/AnomalyDetectionServer.dir/HybridAnomalyDetector.cpp.o -c /home/linux/Desktop/Advanced-Programming-2-Anomaly-Inspection-Web-App/AnomalyDetectionServer/HybridAnomalyDetector.cpp",
+  "file": "/home/linux/Desktop/Advanced-Programming-2-Anomaly-Inspection-Web-App/AnomalyDetectionServer/HybridAnomalyDetector.cpp"
+},
+{
+  "directory": "/home/linux/Desktop/Advanced-Programming-2-Anomaly-Inspection-Web-App/build",
+  "command": "/usr/bin/c++     -pthread -std=c++11 -g   -o CMakeFiles/AnomalyDetectionServer.dir/minCircle.cpp.o -c /home/linux/Desktop/Advanced-Programming-2-Anomaly-Inspection-Web-App/AnomalyDetectionServer/minCircle.cpp",
+  "file": "/home/linux/Desktop/Advanced-Programming-2-Anomaly-Inspection-Web-App/AnomalyDetectionServer/minCircle.cpp"
+},
+{
+  "directory": "/home/linux/Desktop/Advanced-Programming-2-Anomaly-Inspection-Web-App/build",
+  "command": "/usr/bin/c++     -pthread -std=c++11 -g   -o CMakeFiles/AnomalyDetectionServer.dir/Server.cpp.o -c /home/linux/Desktop/Advanced-Programming-2-Anomaly-Inspection-Web-App/AnomalyDetectionServer/Server.cpp",
+  "file": "/home/linux/Desktop/Advanced-Programming-2-Anomaly-Inspection-Web-App/AnomalyDetectionServer/Server.cpp"
+},
+{
+  "directory": "/home/linux/Desktop/Advanced-Programming-2-Anomaly-Inspection-Web-App/build",
+  "command": "/usr/bin/c++     -pthread -std=c++11 -g   -o CMakeFiles/AnomalyDetectionServer.dir/SimpleAnomalyDetector.cpp.o -c /home/linux/Desktop/Advanced-Programming-2-Anomaly-Inspection-Web-App/AnomalyDetectionServer/SimpleAnomalyDetector.cpp",
+  "file": "/home/linux/Desktop/Advanced-Programming-2-Anomaly-Inspection-Web-App/AnomalyDetectionServer/SimpleAnomalyDetector.cpp"
+},
+{
+  "directory": "/home/linux/Desktop/Advanced-Programming-2-Anomaly-Inspection-Web-App/build",
+  "command": "/usr/bin/c++     -pthread -std=c++11 -g   -o CMakeFiles/AnomalyDetectionServer.dir/timeseries.cpp.o -c /home/linux/Desktop/Advanced-Programming-2-Anomaly-Inspection-Web-App/AnomalyDetectionServer/timeseries.cpp",
+  "file": "/home/linux/Desktop/Advanced-Programming-2-Anomaly-Inspection-Web-App/AnomalyDetectionServer/timeseries.cpp"
+}
+]
