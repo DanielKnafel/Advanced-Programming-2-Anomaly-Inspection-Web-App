@@ -45,11 +45,13 @@ int main(){
 		AnomalyDetectionHandler adh;
 		Server server(port);
 		server.start(adh); // runs on its own thread
-		server.stop();
+		//server.stop();
 	}catch(const char* s){
 		cout<<s<<endl;
 	}
 
+	cout<<"press enter (or ctrl+c) to exit...\n";
+	getchar();
 
 	cout<<"done"<<endl;
 	return 0;
