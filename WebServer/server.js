@@ -1,11 +1,10 @@
 const express = require("express");
 const app = express();
-const bodyParser = require('body-parser');
 
 var id=0;
 var models={};
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 app.get("/test", (req, res) => {
     var net = require('net');
     var client = new net.Socket();
