@@ -2,8 +2,9 @@
 
 CLI::CLI(DefaultIO* dio) {
 		this->dio=dio;
+		commands.push_back(new Algorithm(dio));
 		commands.push_back(new UploadCSV(dio));
-		commands.push_back(new Settings(dio));
+		//commands.push_back(new Settings(dio));
 		commands.push_back(new Detect(dio));
 		commands.push_back(new Results(dio));
 		commands.push_back(new UploadAnom(dio));

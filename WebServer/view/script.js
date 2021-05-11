@@ -19,31 +19,6 @@ $(function() {
         //$("#uploadfile h1").html("Drag and Drop file here<br/>Or<br/>Click to select file");
     });
 
-    /*$("html").on("drag dragstart dragover dragenter drop", function(e) {
-        e.preventDefault();
-        e.stopPropagation();
-        $("h1").addClass("d-none");
-        $("#drag").removeClass("d-none");
-        //$("#uploadfile h1").text("Drag here");
-    });
-
-    $("html").on("drop", function(e) {
-        e.preventDefault();
-        e.stopPropagation();
-        $("#uploadfile h1").html("Drag and Drop file here<br/>Or<br/>Click to select file"); 
-    });
-
-    // Drag leave
-    $('html').on('dragleave dragend', function (e) {
-        $("h1").addClass("d-none");
-        $("#start").removeClass("d-none");
-        //$("#uploadfile h1").html("Drag and Drop file here<br/>Or<br/>Click to select file");
-    });*/
-
-    /* $('html').on('dragend', function (e) {
-        $("#uploadfile h1").html("Drag and Drop file here<br/>Or<br/>Click to select file");
-    }); */
-
     // Drag enter
     $('.upload-area').on('drag dragstart dragover dragenter', function (e) {
         e.stopPropagation();
@@ -53,13 +28,6 @@ $(function() {
         $(this).removeClass("border-secondary").removeClass("border-danger").addClass("border-primary");
         //$("#uploadfile h1").text("Drop");
     });
-
-    // Drag over
-    /*$('.upload-area').on('dragover', function (e) {
-        e.stopPropagation();
-        e.preventDefault();
-        $("#uploadfile h1").text("Drop");
-    });*/
 
     // Drop
     $('.upload-area').on('drop', function (e) {

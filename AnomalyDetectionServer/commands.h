@@ -45,6 +45,7 @@ struct fixdReport{
 };
 
 struct SharedState{
+	TimeSeriesAnomalyDetector* detector;
 	float threshold;
 	vector<AnomalyReport> report;
 	vector<fixdReport> fixdRports;
@@ -68,7 +69,6 @@ public:
 	virtual ~Command(){}
 };
 
-// implement here your command classes
 
 class UploadCSV:public Command{
 public:
@@ -82,6 +82,29 @@ public:
 		dio->write("Upload complete.\n");
 	}
 };
+
+class Algorithm:public Command{
+public:
+	Algorithm(DefaultIO* dio):Command(dio,"algorithm"){}
+	virtual void execute(SharedState* sharedState){
+		bool ok=false;
+		while(!ok){
+			dio->write("\nType 1 for Simple, 2 for Hybrid\n");
+			float f;
+			dio->read(&f);
+			if (f == 1) {
+				sharedState->detector = new SimpleAnomalyDetector();
+				ok = true;
+			} else if (f == 2) {
+				sharedState->detector = new HybridAnomalyDetector();
+				ok = true;
+			}	
+			else
+				dio->write("please choose a value of 1 or 2.\n");
+		}
+	}
+};
+
 
 class Settings:public Command{
 public:
