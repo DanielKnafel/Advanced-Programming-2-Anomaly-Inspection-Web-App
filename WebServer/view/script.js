@@ -1,6 +1,7 @@
 $(function() {
-    $("#submit").on('click', function(){
-
+    $("#form").on('submit', function(e){
+        e.preventDefault();
+        e.stopPropagation();
         var learnFile = $('#learn')[0].files[0];
         var detectFile = $('#detect')[0].files[0];
         var algorithm = $('#algorithm').val();
