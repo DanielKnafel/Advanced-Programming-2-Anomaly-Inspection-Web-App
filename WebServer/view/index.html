@@ -13,27 +13,23 @@
 </head>
 
 <body>
-    <div class="container" >
-        <div class="row pt-5 vh-100">
-            <!-- Drag and Drop container-->
-            <div class="col-8">
-                <form class="upload-area border border-secondary rounded h-75 d-flex bg-light" id="uploadfile">
-                    <h1 id="start" class="text-secondary text-center my-auto mx-auto">Drag and Drop file here<br/>Or<br/>Click to select file</h1>
-                    <h1 id="drag" class="text-danger text-center my-auto mx-auto d-none">Drag here</h1>
-                    <h1 id="drop" class="text-primary text-center my-auto mx-auto d-none">Drop</h1>
-                    <h1 id="uploading" class="text-primay text-center my-auto mx-auto d-none">Uploading</h1>
-                </form>
-            </div>
+            <div action="/detect" method="post">
 
-            <div class="col-4">
-                <div class="list-group border border-secondary">
-                  <button type="button" data-toggle="list" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center active">Create Model (upload train data)</button>
-                </div>
-            </div>
-        </div>
-    </div>
+                    <label>Choose algorithm:</label>
+                    <select name="algorithm" id="algorithm">
+                        <option value="Simple">Simple</option>
+                        <option value="Hybrid">Hybrid</option>
+                    </select>
 
-    <input class="d-none" type="file" name="file" id="file">
+                    <label>Learn file input</label>
+                    <input type="file" name="learn" id="learn" accept=".csv">
+
+                    <label>Detect file input</label>
+                    <input type="file" name="detect" id="detect" accept=".csv">
+
+                    <input value="Submit" id="submit">
+
+            </div>
 
     <script src="https://code.jquery.com/jquery-3.5.1.min.js" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>

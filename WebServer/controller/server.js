@@ -6,6 +6,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 app.post("/detect",(req, res) => {
+    console.log(body);
     var userInput = {"algorithm": req.body.algorithm , "train_data": req.body.train_data, "detect_data": req.body.detect_data};
     model.doModelStuffz(userInput);
     res.send(JSON.stringify(model));
