@@ -1,7 +1,7 @@
 var client;
 
 // sends data to client line by line. converts 'JSON' to 'csv' format
-function sendDataToServer(client, data) {
+function sendDataToServer(data) {
     var keys = Object.keys(data);
     var n = data[keys[0]].length;
     var line = '';
@@ -9,25 +9,37 @@ function sendDataToServer(client, data) {
         line += col + ',';
     }
     line = line.slice(0,-1);
-    console.log(line+'\n');
+    line += '\n';
     client.write(line);
 
     for (var i = 0; i < n; i++) {
         line = '';
         for (col of keys) {
-            line += data[col][i] +',';
+            line += data[col][i] + ',';
         }
+        // remove last ','
         line = line.slice(0,-1);
-        console.log(line+'\n');
+        line += '\n';
         client.write(line);
     }
-    client.write("done");
+    client.write("done\n");
 }
 
 function doModelStuffz(userInput) {
     connectToAnomalyServer();
-    client.write(userInput.algorithm);
+    client.write("1\n");
+
+   
+    if (userInput.algorithm == "Simple") {
+        client.write("1\n");
+    }
+    else if (userInput.algorithm == "Hybrid") {
+        client.write("2\n");
+    }
+    client.write("2\n");
     sendDataToServer(userInput.train_data);
+    sendDataToServer(userInput.detect_data);
+
 
     //client.destroy();
 }
@@ -41,10 +53,11 @@ function connectToAnomalyServer() {
 
     client.on('data', function(data) {
         console.log('Received: ' + data);
-        res.send(''+data);
     });
 
     client.on('close', function() {
         console.log('Connection closed');
     });
 }
+
+module.exports.doModelStuffz = doModelStuffz;

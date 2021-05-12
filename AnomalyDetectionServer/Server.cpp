@@ -24,7 +24,7 @@
 	}
 
 	void socketIO::read(float* f){
-		//recv(clientID,f,sizeof(float),0);
+		// recv(clientID,f,sizeof(float),0);
 		// it will be already in the string line
 	}
 

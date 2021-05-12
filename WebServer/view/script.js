@@ -5,12 +5,13 @@ $(function() {
         var learnFile = $('#learn')[0].files[0];
         var detectFile = $('#detect')[0].files[0];
         var algorithm = $('#algorithm').val();
-        learnFile.text().then(leartext => {
-            detectFile.text().then(detecttext => uploadData(
+
+        learnFile.text().then(learnText => {
+            detectFile.text().then(detectText => uploadData(
                 JSON.stringify({
                     algorithm: algorithm,
-                    train_data: csvtodict(leartext),
-                    detect_data: csvtodict(detecttext)
+                    train_data: csvToDict(learnText),
+                    detect_data: csvToDict(detectText)
                 })
             ));
         });
@@ -18,12 +19,12 @@ $(function() {
 });
 
 // Sending AJAX request and upload file
-function uploadData(formdata){
+function uploadData(formData){
 
     $.ajax({
         url: '/detect',
         type: 'post',
-        data: formdata,
+        data: formData,
         contentType: 'application/json',
         processData: false,
         dataType: 'json',
@@ -37,7 +38,7 @@ function uploadData(formdata){
 }
 
 
-function csvtodict(data){
+function csvToDict(data){
     var lines = data.split("\n");
     var dic={};
     var prop = lines[0].split(",");

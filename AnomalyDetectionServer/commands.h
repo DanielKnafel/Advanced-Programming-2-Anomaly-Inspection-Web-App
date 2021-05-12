@@ -91,7 +91,7 @@ public:
 		while(!ok){
 			dio->write("\nType 1 for Simple, 2 for Hybrid\n");
 			float f;
-			dio->read(&f);
+			f = stof(dio->read());
 			if (f == 1) {
 				sharedState->detector = new SimpleAnomalyDetector();
 				ok = true;
@@ -134,10 +134,11 @@ public:
 		TimeSeries train("anomalyTrain.csv");
 		TimeSeries test("anomalyTest.csv");
 		sharedState->testFileSize = test.getRowSize();
-		HybridAnomalyDetector ad;
-		ad.setCorrelationThreshold(sharedState->threshold);
-		ad.learnNormal(train);
-		sharedState->report = ad.detect(test);
+		//HybridAnomalyDetector ad;
+		//ad.setCorrelationThreshold(sharedState->threshold);
+		sharedState->detector->learnNormal(train);
+		sharedState->report = sharedState->detector->detect(test);
+		delete sharedState->detector;
 
 		fixdReport fr;
 		fr.start=0;
