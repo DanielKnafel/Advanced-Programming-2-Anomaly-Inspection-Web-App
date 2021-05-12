@@ -13,23 +13,32 @@
 </head>
 
 <body>
+    <div class="row mx-md-n5">
+        <div class="col px-md-7"><div class="p-4"></div></div>
+    </div>
     <div class= "container">
             <form action="/detect" method="post" id="form">
-                <br>
+                <div class="row">
+                    <div class="col-sm">
                     <label>Choose algorithm:</label>
                     <select name="algorithm" id="algorithm">
                         <option value="Simple">Simple</option>
                         <option value="Hybrid">Hybrid</option>
                     </select>
-
+                    </div>
+                    <div class="col-sm">
                     <label>Learn file input</label>
                     <input type="file" name="learn" id="learn" accept=".csv">
-
+                    </div>
+                    <div class="col-sm">
                     <label>Detect file input</label>
                     <input type="file" name="detect" id="detect" accept=".csv">
-
+                    </div>
+                    <div class="col-sm">
+                        <label>Click to submit</label>
                     <input value="Submit" type="submit" id="submit">
-
+                    </div>
+                </div>
             </form>
     </div>
 
