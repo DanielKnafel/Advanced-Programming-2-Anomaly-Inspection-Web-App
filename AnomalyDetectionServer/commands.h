@@ -21,21 +21,16 @@ public:
 	virtual void read(float* f)=0;
 	virtual ~DefaultIO(){}
 
-	// you may add additional methods here
-
 	void readAndFile(string fileName){
 		ofstream out(fileName);
 		string s="";
 		while((s=read())!="done\n"){
-			out<<s<<endl;
+			out<<s;
 		}
 		out.close();
 	}
-
-
 };
 
-// you may add here helper classes
 
 struct fixdReport{
 	int start;
@@ -57,7 +52,6 @@ struct SharedState{
 };
 
 
-// you may edit this class
 class Command{
 protected:
 	DefaultIO* dio;
@@ -105,7 +99,6 @@ public:
 	}
 };
 
-
 class Settings:public Command{
 public:
 	Settings(DefaultIO* dio):Command(dio,"algorithm settings"){}
@@ -134,8 +127,6 @@ public:
 		TimeSeries train("anomalyTrain.csv");
 		TimeSeries test("anomalyTest.csv");
 		sharedState->testFileSize = test.getRowSize();
-		//HybridAnomalyDetector ad;
-		//ad.setCorrelationThreshold(sharedState->threshold);
 		sharedState->detector->learnNormal(train);
 		sharedState->report = sharedState->detector->detect(test);
 		delete sharedState->detector;
@@ -166,6 +157,7 @@ class Results:public Command{
 public:
 	Results(DefaultIO* dio):Command(dio,"display results"){}
 	virtual void execute(SharedState* sharedState){
+		dio->write("Results: \n");
 		for_each(sharedState->report.begin(),sharedState->report.end(),[this](AnomalyReport& ar){
 			dio->write(ar.timeStep);
 			dio->write("\t"+ar.description+"\n");

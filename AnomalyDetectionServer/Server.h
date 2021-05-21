@@ -52,7 +52,6 @@ public:
 };
 
 
-// edit your AnomalyDetectionHandler class here
 class AnomalyDetectionHandler:public ClientHandler{
 	public:
     virtual void handle(int clientID){
