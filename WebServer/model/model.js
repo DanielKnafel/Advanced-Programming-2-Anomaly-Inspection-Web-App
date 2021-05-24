@@ -1,4 +1,6 @@
 var client;
+var resultsRecieved = false;
+var results = "";
 // anomaly server commands
 var Algorithm = 1;
 var UploadCSV = 2;
@@ -31,11 +33,12 @@ function sendDataToServer(data) {
     client.write("done\n");
 }
 
-function doModelStuffz(userInput) {
+async function doModelStuffz(userInput) {
+
     connectToAnomalyServer();
     client.write(Algorithm +" \n");
 
-   // send user selction to server. 1 = Simple, 2 = Hybrid
+    // send user selction to server. 1 = Simple, 2 = Hybrid
     if (userInput.algorithm == "Simple") {
         client.write("1\n");
     }
@@ -51,20 +54,33 @@ function doModelStuffz(userInput) {
     client.write(Detect + "\n");
     // get results
     client.write(Results + "\n");
+    await new Promise(resolve => setTimeout(resolve, 1000));
 
-    //client.destroy();
+    //console.log("res: " + results.slice(results.search("Results: ") + 9, results.lastIndexOf("Done")));
 }
 
+function getResults() {
+    results = results.slice(results.search("Results: \n") + 10, results.lastIndexOf("Done"));
+    //console.log("res: " + results.slice(results.search("Results: ") + 9, results.lastIndexOf("Done")));
+    return results;
+}
 
 function connectToAnomalyServer() {
     var net = require('net');
     client = new net.Socket();
+    var isLog = false;
     client.connect(5555, '127.0.0.1', function() {
         console.log("Connected!");
     });
 
     client.on('data', function(data) {
-        console.log('Received: ' + data);
+        // console.log(data.toString());
+        // if (data.toString().includes("Results"))
+        //     isLog = true;
+        // if (isLog)
+            results += data.toString();
+        // if (data.toString().includes("Done"))
+        //     isLog = false;
     });
 
     client.on('close', function() {
@@ -73,3 +89,4 @@ function connectToAnomalyServer() {
 }
 
 module.exports.doModelStuffz = doModelStuffz;
+module.exports.getResults = getResults;
