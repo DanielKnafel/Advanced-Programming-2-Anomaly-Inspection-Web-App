@@ -1,14 +1,22 @@
 const express = require("express");
 const app = express();
 const model = require("../model/model.js");
-
-app.use(express.json({limit: '5mb'}));
-// app.use(express.urlencoded({ extended: true }));
+const fileUpload = require("express-fileupload")
+app.use(fileUpload());
+//app.use(express.json({limit: '5mb'}));
+app.use(express.urlencoded({ extended: false }));
 
 app.post("/detect",async (req, res) => {
-    var userInput = {"algorithm": req.body.algorithm , "train_data": req.body.train_data, "detect_data": req.body.detect_data};
-    await model.doModelStuffz(userInput);
-    res.write(JSON.stringify(model.getResults()));
+    if (req.files) {
+        // extract data from request
+        var algorithm = req.body.algorithm
+        var learnFile = req.files.learnFile
+        var detectFile = req.files.detectFile
+        // wait for model to calculate anomalies
+        await model.doModelStuffz(algorithm, learnFile, detectFile);
+        // send anomalies to client
+        res.write(model.getResults());
+    }
     res.end();
 })
 

@@ -8,55 +8,41 @@ var Detect = 3;
 var Results = 4;
 var Exit = 6;
 
-// sends data to client line by line. converts 'JSON' to 'csv' format
+// sends data to client line by line.
 function sendDataToServer(data) {
-    var keys = Object.keys(data);
-    var n = data[keys[0]].length;
-    var line = '';
-    for (col of keys) {
-        line += col + ',';
-    }
-    line = line.slice(0,-1);
-    line += '\n';
-    client.write(line);
-
-    for (var i = 0; i < n; i++) {
-        line = '';
-        for (col of keys) {
-            line += data[col][i] + ',';
-        }
-        // remove last ','
-        line = line.slice(0,-1);
-        client.write(line);
+    // split data by new line
+    var lines = data.split("\n");
+    // send data line by line to the server
+    for (var i = 0; i< lines.length; i++) {
+        client.write(lines[i]);
         client.write("\n");
     }
     client.write("done\n");
 }
 
-async function doModelStuffz(userInput) {
-
-    connectToAnomalyServer();
+async function doModelStuffz(algorithm, learnFile, detectFile) {
+    await connectToAnomalyServer();
     client.write(Algorithm +" \n");
 
     // send user selction to server. 1 = Simple, 2 = Hybrid
-    if (userInput.algorithm == "Simple") {
+    if (algorithm == "Simple") {
         client.write("1\n");
     }
-    else if (userInput.algorithm == "Hybrid") {
+    else if (algorithm == "Hybrid") {
         client.write("2\n");
     }
 
     // start the file uploads
     client.write(UploadCSV + "\n");
-    sendDataToServer(userInput.train_data);
-    sendDataToServer(userInput.detect_data);
+    sendDataToServer(learnFile.data.toString());
+    sendDataToServer(detectFile.data.toString());
     // detect anomalies
     client.write(Detect + "\n");
     // get results
     client.write(Results + "\n");
     await new Promise(resolve => setTimeout(resolve, 1000));
+    //client.write(Exit + "\n");
 
-    //console.log("res: " + results.slice(results.search("Results: ") + 9, results.lastIndexOf("Done")));
 }
 
 function getResults() {
@@ -65,7 +51,7 @@ function getResults() {
     return results;
 }
 
-function connectToAnomalyServer() {
+async function connectToAnomalyServer() {
     var net = require('net');
     client = new net.Socket();
     var isLog = false;
@@ -74,7 +60,7 @@ function connectToAnomalyServer() {
     });
 
     client.on('data', function(data) {
-        // console.log(data.toString());
+        //console.log(data.toString());
         // if (data.toString().includes("Results"))
         //     isLog = true;
         // if (isLog)
