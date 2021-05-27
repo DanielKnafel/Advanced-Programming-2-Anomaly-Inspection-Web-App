@@ -6,16 +6,27 @@ app.use(fileUpload());
 //app.use(express.json({limit: '5mb'}));
 app.use(express.urlencoded({ extended: false }));
 
-app.post("/detect",async (req, res) => {
+app.post("/detect", async (req, res) => {
     if (req.files) {
         // extract data from request
         var algorithm = req.body.algorithm
         var learnFile = req.files.learnFile
         var detectFile = req.files.detectFile
         // wait for model to calculate anomalies
-        await model.doModelStuffz(algorithm, learnFile, detectFile);
+        var promise =  model.doModelStuffz(algorithm, learnFile, detectFile);
         // send anomalies to client
-        res.write(model.getResults());
+        await promise.then(result => {
+            var rows = result.trim().split("\n");
+            var arr = []
+            rows.forEach(row => {
+                var temp = row.split("\t");
+                arr.push({
+                    row: temp[0],
+                    cols: temp[1]
+                });
+            })
+            res.write(JSON.stringify(arr)); 
+        });
     }
     res.end();
 })
