@@ -13,8 +13,18 @@ In this project we support two user stories that both of them returns anomaly in
 
 ## Preinstallation for Developer
 1. IDE (we used Visual Studio Code).
-2. Install npm (run ).
+2. Install npm.
 3. install node.js 12 version or later.
+
+*Installation commands (on Linux), for second and third requirements mentioned*
+sudo apt-get update
+sudo apt-get install nodejs
+sudo apt-get install npm
+
+*Checking installatons and the acurate versions*
+nodejs -v
+npm -v
+
 
 ## Quickstart: Installations Instructions And Running System requirements: 
 1. Web browser
