@@ -25,7 +25,7 @@ In our project we used MVC architecture in order to make everything work.
 
 ### MVC
 
-![MVC](https://raw.githubusercontent.com/DanielKnafel/Advanced-Programming-2/master/UML/MVVM.png)
+![MVC](https://raw.githubusercontent.com/DanielKnafel/Advanced-Programming-2-Anomaly-Inspection-Web-App/main/Images/MVC.png)
 
 The MVC architectural pattern in web application is divided to three parts:
 View: responsiple for the visual display of the data to the user.
@@ -37,3 +37,8 @@ The order of the communication between the client and the web application:
 3) The Controler generates presentation for the View.
 4) The View gets the state from the Model.
 5) The View returns the HTTP response to the client.
+
+### Flow
+
+![Flow](https://raw.githubusercontent.com/DanielKnafel/Advanced-Programming-2-Anomaly-Inspection-Web-App/main/Images/Flow.png)
+
