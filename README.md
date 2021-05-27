@@ -13,12 +13,13 @@ In this project we support two user stories that both of them returns anomaly in
 
 ## Preinstallation for Developer
 IDE (we used Visual Studio Code)
-install npm
-install node.js
+install npm (run )
+install node.js 12 version or later
 
-## Quickstart: Installations Instructions And Running
-System requirements: 
+## Quickstart: Installations Instructions And Running System requirements: 
 web browser
+execution command: g++ -std=c++11 -pthread *.cpp
+or altenatevily use cmakelists .
 
 ## Links
 In our project we used MVC architecture in order to make everything work.
