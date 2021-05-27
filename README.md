@@ -18,7 +18,7 @@ In this project we support two user stories that both of them returns anomaly in
 
 ## Quickstart: Installations Instructions And Running System requirements: 
 1. Web browser
-2. execution command: g++ -std=c++11 -pthread *.cpp (or altenatevily use cmakelists).
+2. Project's execution command: g++ -std=c++11 -pthread *.cpp (or altenatevily use cmakelists).
 
 ## Links
 In our project we used MVC architecture in order to make everything work.
