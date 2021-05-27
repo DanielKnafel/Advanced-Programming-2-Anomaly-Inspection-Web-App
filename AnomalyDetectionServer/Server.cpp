@@ -53,32 +53,47 @@ void sigHandler(int sigNum){
 void Server::start(ClientHandler& ch)throw(const char*){
 	cout << "server started" << endl;	
 	t=new thread([&ch,this](){
-		signal(SIGALRM,sigHandler);
+		vector<thread*> threads;
 		while(!stopped){
 			socklen_t clientSize=sizeof(client);
-			alarm(1);
 			cout << "waiting for a client" << endl;
 			int aClient = accept(fd,(struct sockaddr*)&client,&clientSize);
 			cout << "client connected" << endl;
 			if(aClient>0){
-				//new thread([&aClient,this,&ch](){
+				threads.push_back(new thread([&aClient,this,&ch](){
 					ch.handle(aClient);
 					close(aClient);
-				//});
+					cout << "client closed" << endl;
+				}));
 			}
-			alarm(0);
 		}
 		close(fd);
+		for (thread* tt : threads){
+			tt->join();
+			delete tt;
+		}
 	});
 }
 
 void Server::stop(){
 	stopped=true;
+	cout << "joining thread" << endl;
+	struct sigaction sact;
+	sigemptyset(&sact.sa_mask);
+	sact.sa_flags = 0;
+	sact.sa_handler = sigHandler;
+	sigaction(SIGALRM, &sact, NULL);
+
+	std::this_thread::sleep_for(std::chrono::milliseconds(1000));
+	pthread_kill(t->native_handle(),SIGALRM);
 	t->join(); // do not delete this!
+	delete t;
 	cout << "thread joined" << endl;
 }
 
 Server::~Server() {
+	if(!stopped)
+		stop();
 	// TODO Auto-generated destructor stub
 }
 
