@@ -64,7 +64,17 @@ async function doModelStuffz(algorithm, learnFile, detectFile) {
         });
     });
     results = results.slice(results.search("Results: \n") + 10, results.lastIndexOf("Done"));
-    return results;
+    // construct the JSON object
+    var rows = results.trim().split("\n");
+    var json = []
+    rows.forEach(row => {
+        var temp = row.split("\t");
+        json.push({
+            row: temp[0],
+            features: temp[1]
+        });
+    })
+    return JSON.stringify(json);
 }
 
 module.exports.doModelStuffz = doModelStuffz;
