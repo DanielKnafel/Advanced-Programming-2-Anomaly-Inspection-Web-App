@@ -15,8 +15,14 @@ https://www.youtube.com/watch?v=MGTpONC_lAU
 
 ## Explanation of folders and main files structure
 
-![fileTree](https://raw.githubusercontent.com/DanielKnafel/Advanced-Programming-2-Anomaly-Inspection-Web-App/main/Images/fileTree.png)
+![fileTree](https://raw.githubusercontent.com/DanielKnafel/Advanced-Programming-2-Anomaly-Inspection-Web-App/main/Images/fileTree.jpg)
 
+*AnomalyDetectionServer* - hold the c++ files for the remote anomaly server.
+*WebServer* - hold the web server files.
+   *controller* - holds the web server itself.
+   *model* - handles communication with the c++ server.
+   *storyTwo* - holds the demo for user story 2.
+   *view* - holds the HTML presentation for the web server.
 
 ** Please note - this project is meant to be run on **Linux** **
 
@@ -52,7 +58,7 @@ to install the required node packages.
 4. Run the provided *storyTwo.py* file to check user story 2, or open a web browser at *localhost:8080* to check user story 1.
 
 ## Links
-In our project we used MVC architecture in order to make everything work.
+In our project we used the MVC architecture in order to make everything work.
 
 ### MVC
 
