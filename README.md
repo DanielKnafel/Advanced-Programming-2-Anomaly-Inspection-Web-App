@@ -4,16 +4,13 @@ In this project we developed web inspection app according to two user stories:
 
 *First User Story* 
 
-The user opens preferred web browser runs the url localhost:8080
-chooses one of the algorithms - simple or hybrid
-uploads two files: 
-      a) train csv file. 
-      b) test csv file which contains anomalies .
-press submit.
-Files are sent to server where they're proccessed.
+The user opens preferred web browser runs the url localhost:8080, chooses one of the algorithms - simple or hybrid.
+Then uploads two files: **train csv file** and **test csv file** which contains anomalies and presses submit.
+The files are sent to server where they're proccessed.
 The reseponse with found anomalies sent straight to user and displayed in an output window
 
-2) The user sends HTTP POST command to the url localhost:8080 with algorithm, train csv file and anomaly csv file.
+*Second User Story* 
+The user sends HTTP POST command to the url localhost:8080 with algorithm, train csv file and anomaly csv file.
    The server returns a response to the user in a JSON that includes the anomaly inspection report.
 ## Video link
 
