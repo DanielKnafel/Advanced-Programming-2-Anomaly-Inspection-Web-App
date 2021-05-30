@@ -3,6 +3,7 @@
 In this project we developed web inspection app according to two user stories:
 
 *First User Story* 
+
 The user opens preferred web browser runs the url localhost:8080
 chooses one of the algorithms - simple or hybrid
 uploads two files: 
