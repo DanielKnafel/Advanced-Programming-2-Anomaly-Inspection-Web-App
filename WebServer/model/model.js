@@ -63,15 +63,18 @@ async function doModelStuffz(algorithm, learnFile, detectFile) {
             console.log("Connected!");
         });
     });
-    results = results.slice(results.search("Results: \n") + 10, results.lastIndexOf("Done"));
+    // extract results from server log
+    var resultText = "Results: \n";
+    results = results.slice(results.search(resultText) + resultText.length, results.lastIndexOf("Done"));
     // construct the JSON object
     var rows = results.trim().split("\n");
     var json = []
     rows.forEach(row => {
         var temp = row.split("\t");
         json.push({
-            row: temp[0],
-            features: temp[1]
+            start: temp[0],
+            end: temp[1],
+            description: temp[2]
         });
     })
     return JSON.stringify(json);

@@ -158,9 +158,11 @@ public:
 	Results(DefaultIO* dio):Command(dio,"display results"){}
 	virtual void execute(SharedState* sharedState){
 		dio->write("Results: \n");
-		for_each(sharedState->report.begin(),sharedState->report.end(),[this](AnomalyReport& ar){
-			dio->write(ar.timeStep);
-			dio->write("\t"+ar.description+"\n");
+		for_each(sharedState->fixdRports.begin(),sharedState->fixdRports.end(),[this](fixdReport& fr){
+			dio->write(fr.start);
+			dio->write("\t");
+			dio->write(fr.end);
+			dio->write("\t"+fr.description+"\n");
 		});
 		dio->write("Done.\n");
 	}
