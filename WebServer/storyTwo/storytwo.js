@@ -1,30 +1,18 @@
-var url = 'http://localhost:9876/detect'
-const fs = require('fs')
-var train
-var test
-try {
-  const data = fs.readFileSync('train.csv', 'utf8')
-  train = data
-} catch (err) {
-  console.error(err)
+async function run(){
+  var url = 'http://127.0.0.1:9876'
+  const fs = require('fs')
+  // Importing library
+  const FormData = require('form-data');
+  // Creating a new form data
+  var bodyFormData = new FormData();
+  // Appending info to body form data
+  await bodyFormData.append('algorithm', 'Simple');
+  await bodyFormData.append('learnFile', fs.createReadStream("train.csv"), "train.csv"); 
+  await bodyFormData.append('detectFile', fs.createReadStream("test.csv"), "test.csv"); 
+  const axios = require('axios')
+  // POST request
+  let results = await axios.post(url, bodyFormData, {  });
+  // Showing results
+  console.log(results);
 }
-try {
-    const data = fs.readFileSync('test.csv', 'utf8')
-    test = data
-  } catch (err) {
-    console.error(err)
-  }
-const axios = require('axios')
-
-axios
-  .post(url, {
-    algorithm: 'Simple',
-    learnFile:  train,
-    detectFile: test
-  })
-  .then(res => {
-    console.log(res)
-  })
-  .catch(error => {
-    console.error(error)
-  })
+run();
