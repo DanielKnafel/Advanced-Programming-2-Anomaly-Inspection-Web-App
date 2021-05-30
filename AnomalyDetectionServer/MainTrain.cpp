@@ -38,6 +38,14 @@ string readStr(int serverFD){
 	return serverInput;
 }
 
+Server *GlobalServerPtr;
+
+void exitHandler(int sigNum){
+	cout<<endl;
+	cout<<"atExit"<<endl;
+	GlobalServerPtr->stop();
+}
+
 int main(){
 	int port=5555;
 
@@ -45,6 +53,13 @@ int main(){
 		AnomalyDetectionHandler adh;
 		Server server(port);
 		server.start(adh); // runs on its own thread
+		// stop the server on ctrl-c
+		GlobalServerPtr = &server;
+		struct sigaction sact;
+		sigemptyset(&sact.sa_mask);
+		sact.sa_flags = 0;
+		sact.sa_handler = exitHandler;
+		sigaction(SIGINT, &sact, NULL);
 		cout<<"press enter (or ctrl+c) to exit...\n";
 		getchar();
 	}catch(const char* s){

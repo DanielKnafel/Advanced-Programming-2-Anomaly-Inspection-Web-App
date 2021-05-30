@@ -47,7 +47,7 @@ Server::Server(int port)throw (const char*) { // @suppress("Class members should
 }
 
 void sigHandler(int sigNum){
-	cout<<"sidH"<<endl;
+	cout<<"sigH"<<endl;
 }
 
 void Server::start(ClientHandler& ch)throw(const char*){
