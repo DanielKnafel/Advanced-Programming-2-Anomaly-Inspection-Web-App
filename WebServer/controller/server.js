@@ -6,28 +6,6 @@ app.use(fileUpload());
 //app.use(express.json({limit: '5mb'}));
 app.use(express.urlencoded({ extended: false }));
 
-function buildHtml(res, result) {
-    res.write("<html><body>");
-    res.write("<table BORDER=2>");
-    // create table headers
-    res.write("<TR><TD>Start</TD>");
-    res.write("<TD>End</TD>");
-    res.write("<TD>Features</TD></TR>");
-    // for each element in the json, create a TR with its data
-    JSON.parse(result).forEach(json => {
-            // add data
-            res.write("<TR><TD>");
-            res.write(json['start']);
-            res.write("</TD><TD>");
-            res.write(json['end']);
-            res.write("</TD><TD>");
-            res.write(json['description']);
-            res.write("</TD></TR>");
-    })
-    // close tags
-    res.write("</table></body></html>");
-}
-
 app.post("/", async (req, res) => {
     if (req.files) {
         // extract data from request
@@ -36,18 +14,6 @@ app.post("/", async (req, res) => {
         var detectFile = req.files.detectFile
         // wait for model to calculate anomalies
         res.write((await model.doModelStuffz(algorithm, learnFile, detectFile)).toString());
-    }
-    res.end();
-})
-
-app.post("/detect", async (req, res) => {
-    if (req.files) {
-        // extract data from request
-        var algorithm = req.body.algorithm
-        var learnFile = req.files.learnFile
-        var detectFile = req.files.detectFile
-        // wait for model to calculate anomalies and construct an html page
-        await model.doModelStuffz(algorithm, learnFile, detectFile).then(result => buildHtml(res, result));
     }
     res.end();
 })
