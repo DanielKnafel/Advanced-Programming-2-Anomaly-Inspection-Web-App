@@ -35,27 +35,41 @@ https://www.youtube.com/watch?v=MGTpONC_lAU
 
 Installation instructions for node.js and npm:
    In a terminal, run the following commands:
-      * *sudo apt-get update*
-      * *sudo apt-get install nodejs*
-      * *sudo apt-get install npm*
-
+```bash
+$ sudo apt-get update
+$ sudo apt-get install nodejs
+$ sudo apt-get install npm
+```
 Make sure the installation finished successfully by running:
-   * nodejs -v
-   * npm -v (make sure you have Node version 12 or newer)
-   
+```bash
+$ nodejs -v
+$ npm -v 
+```
+(make sure you have Node version 12 or newer)
+
 Now, navigate to the folder */WebServer/controller* (make sure the package.json file exists in there), and run:
-   * npm -i
+```bash
+$ npm -i
+```
+
 to install the required node packages.
 
 ## Quickstart:
 **How to run the program:**
 1. In a terminal, navigate to *AnomalyDetectionServer/* and compile the c++ files by running:
-   *g++ -std=c++11 -pthread *.cpp -o AnomalyDetectionServer*
+```bash
+$ g++ -std=c++11 -pthread *.cpp -o AnomalyDetectionServer
+```
    or use the provided *cmakelists.txt* with *cmake* on VS Code.
+   
 2. Run the executable, by running:
-   *./AnomalyDetectionServer*
+```bash
+$ ./AnomalyDetectionServer
+```   
 3. Navigate to */WebServer/controller* and start the web-server by running:
-   *node server.js*
+```bash
+$ node server.js
+```
 4. Run the provided *storyTwo.py* file to check user story 2, or open a web browser at *localhost:8080* to check user story 1.
 
 ## Links
