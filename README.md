@@ -1,10 +1,15 @@
 # Advanced-Programming-2-Anomaly-Inspection-Web-App
 ## Introduction
 In this project we developed web inspection app according to two user stories:
-1) The user opens his browser with the url localhost:8080.
-   He gets a website with options to upload train csv file and anomaly csv file.
-   After uploading and press submit, he gets the results in the output window.
-   The results contain anomaly inspection report.
+1) The user opens preferred web browser runs the url localhost:8080
+   chooses one of the algorithms - simple or hybrid
+	uploads two files: 
+      a) train csv file. 
+      b) test csv file which contains anomalies .
+	press submit.
+   Files are sent to server where they're proccessed.
+   The reseponse with found anomalies sent straight to user and displayed in an output window
+
 2) The user sends HTTP POST command to the url localhost:8080 with algorithm, train csv file and anomaly csv file.
    The server returns a response to the user in a JSON that includes the anomaly inspection report.
 ## Video link
