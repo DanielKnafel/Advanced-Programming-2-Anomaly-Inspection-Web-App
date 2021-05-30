@@ -1,6 +1,6 @@
 import requests
 
-url = 'http://localhost:9876/detect'
+url = 'http://localhost:8080/'
 
 form_data = {
     "algorithm": (None, 'Simple'),

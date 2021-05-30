@@ -25,13 +25,25 @@ function buildHtml(res, result) {
     res.write("</table></body></html>");
 }
 
-app.post("/detect", async (req, res) => {
+app.post("/", async (req, res) => {
     if (req.files) {
         // extract data from request
         var algorithm = req.body.algorithm
         var learnFile = req.files.learnFile
         var detectFile = req.files.detectFile
         // wait for model to calculate anomalies
+        res.write((await model.doModelStuffz(algorithm, learnFile, detectFile)).toString());
+    }
+    res.end();
+})
+
+app.post("/detect", async (req, res) => {
+    if (req.files) {
+        // extract data from request
+        var algorithm = req.body.algorithm
+        var learnFile = req.files.learnFile
+        var detectFile = req.files.detectFile
+        // wait for model to calculate anomalies and construct an html page
         await model.doModelStuffz(algorithm, learnFile, detectFile).then(result => buildHtml(res, result));
     }
     res.end();
@@ -40,4 +52,4 @@ app.post("/detect", async (req, res) => {
 app.use(express.static('../view'))
 app.use(express.static('node_modules'))
 
-app.listen(9876, () => console.log("Server is running!"));
+app.listen(8080, () => console.log("Server is running!"));
