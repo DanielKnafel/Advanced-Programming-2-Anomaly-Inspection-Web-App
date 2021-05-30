@@ -1,6 +1,6 @@
 # Advanced-Programming-2-Anomaly-Inspection-Web-App
 ## Introduction
-In this project we support two user stories that both of them returns anomaly inspection report:
+In this project we developed web inspection app according to two user stories:
 1) The user opens his browser with the url localhost:8080.
    He gets a website with options to upload train csv file and anomaly csv file.
    After uploading and press submit, he gets the results in the output window.
