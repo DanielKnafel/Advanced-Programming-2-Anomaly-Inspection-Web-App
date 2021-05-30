@@ -14,18 +14,9 @@ A user sends an HTTP POST request to localhost:8080 that includes an algorithm, 
 https://www.youtube.com/watch?v=MGTpONC_lAU
 
 ## Explanation of folders and main files structure
-   └── Advanced-Programming-2-Anomaly-Inspection-Web-App
-       ├── AnomalyDetectionServer
-       │   └── AnomalyDetectionServer
-       └── WebServer
-           ├── controller
-           │   └── server.js
-           ├── model
-           │   └── model.js
-           ├── storyTwo
-           │   └── storyTwo.py
-           └── view
-               └── index.html
+
+![fileTree](https://raw.githubusercontent.com/DanielKnafel/Advanced-Programming-2-Anomaly-Inspection-Web-App/main/Images/fileTree.png)
+
 
 ** Please note - this project is meant to be run on **Linux** **
 
