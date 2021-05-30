@@ -8,6 +8,7 @@ A user connect to localhost:8080 using his perferred web browser, and is greeted
 The data is sent to server, and after it has been proccessed, the detected anomalies (if any were found) are displayed on web-page.
 
 *Second User Story* 
+
 A user sends an HTTP POST request to localhost:8080 that includes an algorithm, train csv file and an anomaly csv file.
    The server responds with a JSON including the anomaly inspection report for given files.
 ## Video link
